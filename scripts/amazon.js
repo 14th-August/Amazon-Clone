@@ -1,3 +1,5 @@
+import {cart} from '../data/cart.js'; //.. represent folder outside of current folder
+
 //3 Step Process
 //1. Save the data
 //2. Generate the HTML
@@ -140,7 +142,7 @@ document.querySelectorAll('.js-add-to-cart')
       //use dom to display quantity
 
       addedMessageTimeouts[productId] = timeoutId;
-      
+
     });
   });
 
