@@ -56,7 +56,7 @@ products.forEach((product) => {
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart js-added-to-cart-${product.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -70,8 +70,13 @@ products.forEach((product) => {
   `;
 });
 
+
 document.querySelector('.js-products-grid').
 innerHTML = productsHTML;
+
+//we will use an object bnecause we want to use a timeoutid
+
+const addedMessageTimeouts = {};
 
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
@@ -113,8 +118,29 @@ document.querySelectorAll('.js-add-to-cart')
       document.querySelector('.js-cart-quantity')
       .innerHTML = cartQuantity;
 
+      //do same thing where you display the message and store it,
+      //just like with product id
+      
+      const addedMessage = document.querySelector(
+        `.js-added-to-cart-${productId}`
+      );
+
+      addedMessage.classList.add('added-to-cart-visible');
+
+      //check for previous timeout
+      const previousTimeoutId = addedMessageTimeouts[productId];
+     
+      if (previousTimeoutId) {
+        clearTimeout(previousTimeoutId);
+      }
+
+      const timeoutId = setTimeout(() => {
+        addedMessage.classList.remove('added-to-cart-visible');
+      }, 2000);
       //use dom to display quantity
 
+      addedMessageTimeouts[productId] = timeoutId;
+      
     });
   });
 
