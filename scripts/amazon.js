@@ -40,7 +40,7 @@ products.forEach((product) => {
           </div>
 
           <div class="product-quantity-container">
-            <select>
+            <select class="js-quantity-selector-${product.id}">
               <option selected value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -86,12 +86,23 @@ document.querySelectorAll('.js-add-to-cart')
         }
       });
 
+      //for the added button we will store the productId in a var
+      const quantitySelector = document.querySelector(
+        `.js-quantity-selector-${productId}`
+      );
+
+      //store the quantity in array and convert string to numbers
+      const quantity = Number(quantitySelector.value);
+      console.log(cart);
+      
+      selectedValue = quantitySelector.value
+
       if (matchingItem) {
-        matchingItem.quantity += 1;
+        matchingItem.quantity += quantity;
       } else {
         cart.push({
-          productId: productId,
-          quantity: 1
+          productId,
+          quantity
         });
       }
 
@@ -108,6 +119,7 @@ document.querySelectorAll('.js-add-to-cart')
 
     });
   });
+
 
 //calculate quanity
 //put quanity on the page
