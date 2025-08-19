@@ -1,5 +1,5 @@
 import {cart} from '../data/cart.js'; //.. represent folder outside of current folder
-import {products} from '../data/products.js';
+import {products} from '../data/products.js'
 
 //3 Step Process
 //1. Save the data
