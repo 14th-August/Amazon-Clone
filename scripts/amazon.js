@@ -76,7 +76,7 @@ innerHTML = productsHTML;
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
-      const productId = button.dataset.productId;
+      const{ productId } = button.dataset;
 
       let matchingItem;
 
@@ -93,8 +93,6 @@ document.querySelectorAll('.js-add-to-cart')
 
       //store the quantity in array and convert string to numbers
       const quantity = Number(quantitySelector.value);
-      console.log(cart);
-      
       selectedValue = quantitySelector.value
 
       if (matchingItem) {
